@@ -1,0 +1,31 @@
+{
+  "name": "nucleo-back-end-atividade-1",
+  "version": "1.0.0",
+  "description": "Atividade primeira semana do Núcleo avançado de back-end infojr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " nodemon src/index.ts",
+    "build": "tsc --project ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Esther-Macedo/Nucleo-back-end-Atividade-1.git"
+  },
+  "author": "Esther Macedo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Esther-Macedo/Nucleo-back-end-Atividade-1/issues"
+  },
+  "homepage": "https://github.com/Esther-Macedo/Nucleo-back-end-Atividade-1#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.10",
+    "express": "^4.17.2"
+  }
+}
