@@ -11,7 +11,7 @@ class StockController {
         req.body.release,
 
       );
-      res.send('usuario criado').status(201);
+      res.send('produtoadicionado').status(201);
     } catch (e) {
       res.send('algo deu errado').status(500);
     }

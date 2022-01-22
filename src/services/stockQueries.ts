@@ -4,11 +4,12 @@ class SotckQueries {
   public static async createStock(
     title: string,
     author:string,
-    description:string,
+    detail:string,
     release:string,
   ) {
     const connect = await connectToDatabase();
-    connect.query('INSERT INTO products(title, author, description, release_date) USER VALUES(?,?,?,?)', [title, author, description, release]);
+    connect.query('INSERT INTO products(title, author, detail, release_date) VALUES(?,?,?,?)', [title, author, detail, release]);
+    connect.end();
   }
 }
 
