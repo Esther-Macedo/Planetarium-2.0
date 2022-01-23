@@ -11,15 +11,15 @@ router.put('/updateCostumer/:id', costumerController.updateUser);
 router.delete('/deleteCostumer/:id', costumerController.deleteUser);
 
 /// Products
-router.post('/addproduct', StockController.addNewIten);
+router.post('/addProduct', StockController.addNewIten);
 
 /// Orders
-router.post('/createorder', OrderController.addNewProduct);
+router.post('/createOrder', OrderController.addNewProduct);
 router.delete('/deleteOrder/:id', OrderController.deleteOrder);
 
 // Rotas especiais
 router.get('/costumersByOrderId/:id', SpecialControllers.CostumerController);
-router.get('/allCostumerByOrderId', SpecialControllers.AllCostumers);
+router.get('/allCostumersByOrderId', SpecialControllers.AllCostumers);
 router.get('/productsByOrderId', SpecialControllers.products);
 router.get('/allProductsByOrderId', SpecialControllers.AllproductsByOrderId);
 

@@ -10,7 +10,7 @@ class OrderQueries {
 
   ) {
     try {
-      return (await this.connect).query('INSERT INTO order (product_id, costumer_id, ask_qtd) VALUES(?,?,?)', [productId, costumerId, qtd]);
+      return (await this.connect).query('INSERT INTO orders (prod_id, cost_id, ask_qtd) VALUES(?,?,?)', [productId, costumerId, qtd]);
     } catch (e) {
       console.log(e);
       throw new Error('Algo deu errado');
@@ -21,7 +21,7 @@ class OrderQueries {
 
   async deleteOrder(id:number) {
     try {
-      return (await this.connect).query('DELET FROM orders WHERE order_id=?', [id]);
+      return (await this.connect).query('DELETE FROM orders WHERE order_id=?', [id]);
     } catch (e) {
       console.log(e);
       throw new Error('Algo deu errado');

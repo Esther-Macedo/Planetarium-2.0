@@ -8,7 +8,7 @@ class SpecialQueries {
       return (await this.connect).query(`SELECT orders.order_id, costumers.costumer_id, costumers.costumer_name
       from orders
       join costumers
-      on orders.costumer_id=costumers.costumer_id WHERE order_id = ${id}`);
+      on orders.cost_id=costumers.costumer_id WHERE order_id = ${id}`);
     } finally {
       (await this.connect).end();
     }
@@ -16,7 +16,10 @@ class SpecialQueries {
 
   async getAllCostumersByOrderId() {
     try {
-      return (await this.connect).query('SELECT orders.order_id, costumers.costumer_id, costumers.costumer_name from orders join costumers  on orders.costumer_id=costumers.costumer_id;');
+      return (await this.connect).query('SELECT orders.order_id, costumers.costumer_id, costumers.costumer_name, costumers.email from orders join costumers on orders.cost_id=costumers.costumer_id;');
+    } catch (e) {
+      console.log(e);
+      throw e;
     } finally {
       (await this.connect).end();
     }
@@ -32,7 +35,7 @@ class SpecialQueries {
 
   async getAllProductsByOrderId() {
     try {
-      return (await this.connect).query('SELECT orders.order_id, products.title, products.detail FROM orders JOIN products ON orders.product_id = products.product_id');
+      return (await this.connect).query('SELECT orders.order_id, products.title, products.detail FROM orders JOIN products ON orders.prod_id = products.product_id');
     } finally {
       (await this.connect).end();
     }
