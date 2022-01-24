@@ -1,4 +1,4 @@
-import connectToDatabase from './db';
+import connectToDatabase from '../Configs/db';
 
 class CostumerQueries {
   connect = connectToDatabase();

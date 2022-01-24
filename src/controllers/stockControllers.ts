@@ -17,6 +17,13 @@ class StockController {
       res.send('algo deu errado').status(500);
     }
   }
+
+  public static async allItens(req:Request, res:Response) {
+    try {
+      const data = await StockQueries.seeStock();
+      res.json(data[0]).status(200);
+    } catch (e) { res.send('algo deu errado').status(500); }
+  }
 }
 
 export default StockController;

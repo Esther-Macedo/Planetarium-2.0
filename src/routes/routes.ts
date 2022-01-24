@@ -12,6 +12,7 @@ router.delete('/deleteCostumer/:id', costumerController.deleteUser);
 
 /// Products
 router.post('/addProduct', StockController.addNewIten);
+router.get('/allProducts', StockController.allItens);
 
 /// Orders
 router.post('/createOrder', OrderController.addNewProduct);

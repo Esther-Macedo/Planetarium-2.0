@@ -2,11 +2,11 @@ import { createConnection } from 'mysql2/promise';
 
 async function connectToDatabase() {
   const conn = createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
     port: 3306,
-    password: 'Delphini71',
-    database: 'loja',
+    password: process.env.DBPASS,
+    database: process.env.DBDATABASE,
   });
 
   return conn;
