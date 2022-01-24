@@ -27,7 +27,7 @@ class SpecialQueries {
 
   async getProductByOrderId(id: number) {
     try {
-      return (await this.connect).query(`SELECT orders.order_id, products.title, products.detail FROM orders JOIN products ON orders.product_id = products.product_id WHERE orders.order_id = ${id}`);
+      return (await this.connect).query(`SELECT orders.order_id, products.product_name, products.details FROM orders JOIN products ON orders.prod_id = products.product_id WHERE orders.order_id = ${id}`);
     } finally {
       (await this.connect).end();
     }
@@ -35,7 +35,7 @@ class SpecialQueries {
 
   async getAllProductsByOrderId() {
     try {
-      return (await this.connect).query('SELECT orders.order_id, products.title, products.detail FROM orders JOIN products ON orders.prod_id = products.product_id');
+      return (await this.connect).query('SELECT orders.order_id, products.product_name, products.details FROM orders JOIN products ON orders.prod_id = products.product_id');
     } finally {
       (await this.connect).end();
     }

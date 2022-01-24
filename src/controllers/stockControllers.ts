@@ -5,10 +5,11 @@ class StockController {
   public static async addNewIten(req: Request, res: Response) {
     try {
       await StockQueries.createStock(
-        req.body.title,
-        req.body.author,
-        req.body.description,
-        req.body.release,
+        req.body.name,
+        req.body.class,
+        req.body.life,
+        req.body.details,
+        req.body.qtd,
 
       );
       res.send('produtoadicionado').status(201);

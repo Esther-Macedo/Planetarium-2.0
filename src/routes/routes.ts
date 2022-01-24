@@ -20,7 +20,7 @@ router.delete('/deleteOrder/:id', OrderController.deleteOrder);
 // Rotas especiais
 router.get('/costumersByOrderId/:id', SpecialControllers.CostumerController);
 router.get('/allCostumersByOrderId', SpecialControllers.AllCostumers);
-router.get('/productsByOrderId', SpecialControllers.products);
+router.get('/productsByOrderId/:id', SpecialControllers.products);
 router.get('/allProductsByOrderId', SpecialControllers.AllproductsByOrderId);
 
 export default router;

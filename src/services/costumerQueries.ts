@@ -26,6 +26,16 @@ class CostumerQueries {
     }
   }
 
+  async updatePassword(newPass:string, id:number) {
+    try {
+      (await this.connect).query('UPDATE costumers SET pass = ? WHERE costumer_id = ?', [newPass, id]);
+    } catch (e) {
+      throw new Error('Algo deu errado');
+    } finally {
+      (await this.connect).end();
+    }
+  }
+
   async delelteUser(id:number) {
     try {
       (await this.connect).query('DELETE FROM costumers WHERE costumer_id = ?', [id]);
