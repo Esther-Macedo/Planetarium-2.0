@@ -39,6 +39,15 @@ class CostumerController {
       res.send('algo deu errado').status(500);
     }
   }
+
+  public static async allUsers(req: Request, res:Response) {
+    try {
+      const result = await new CostumerQueries().seeUsers();
+      res.send(result[0]);
+    } catch (e) {
+      res.send('algo deu errado').status(500);
+    }
+  }
 }
 
 export default CostumerController;

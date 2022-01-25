@@ -45,6 +45,16 @@ class CostumerQueries {
       (await this.connect).end();
     }
   }
+
+  async seeUsers() {
+    try {
+      return (await this.connect).query('SELECT * FROM costumers');
+    } catch (e) {
+      throw new Error('Algo deu Errado');
+    } finally {
+      (await this.connect).end();
+    }
+  }
 }
 
 export default CostumerQueries;

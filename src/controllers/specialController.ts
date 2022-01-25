@@ -8,7 +8,6 @@ class SpecialControllers {
       res.json(results[0]);
     } catch (e) {
       res.send('Ops, algo deu errado');
-      console.log(e);
     }
   }
 
@@ -17,7 +16,6 @@ class SpecialControllers {
       const results = await new SpecialQueries().getAllCostumersByOrderId();
       res.json(results[0]);
     } catch (e) {
-      console.log(e);
       throw new Error('Eita, algo de errado não deu certo');
     }
   }
@@ -27,7 +25,6 @@ class SpecialControllers {
       const results = await new SpecialQueries().getProductByOrderId(parseInt(req.params.id, 10));
       res.json(results[0]);
     } catch (e) {
-      console.log(e);
       throw new Error('Eita, algo de errado não deu certo');
     }
   }
@@ -37,29 +34,9 @@ class SpecialControllers {
       const results = await new SpecialQueries().getAllProductsByOrderId();
       res.json(results[0]);
     } catch (e) {
-      console.log(e);
       throw new Error('Eita, algo de errado não deu certo');
     }
   }
 }
-
-/* static async CostumerController(req:Request, res:Response) {
-    try {
-      const results = await new SpecialQueries().getcostumer(parseInt(req.params.id, 10));
-      res.json(results[0]);
-    } catch (e) {
-      throw new Error('Eita, algo de errado não deu certo');
-    }
-  }
-
-  static async Costumers(req: Request, res:Response) {
-    try {
-      const results = await new SpecialQueries().getAllcostumers();
-      res.json(results[0]);
-    } catch (e) {
-      console.log(e);
-      throw new Error('Eita, algo de errado não deu certo');
-    }
-  } */
 
 export default SpecialControllers;

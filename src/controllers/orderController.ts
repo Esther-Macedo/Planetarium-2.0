@@ -23,6 +23,15 @@ class OrderController {
       res.send('Algo deu errado').status(500);
     }
   }
+
+  public static async allOrders(req: Request, res: Response) {
+    try {
+      const result = await new OrderQueries().seeOrders();
+      res.send(result[0]).status(200);
+    } catch (e) {
+      res.send('Algo deu errado').status(500);
+    }
+  }
 }
 
 export default OrderController;

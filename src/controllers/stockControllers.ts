@@ -12,7 +12,7 @@ class StockController {
         req.body.qtd,
 
       );
-      res.send('produtoadicionado').status(201);
+      res.send('produto adicionado').status(201);
     } catch (e) {
       res.send('algo deu errado').status(500);
     }

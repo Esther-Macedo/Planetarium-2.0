@@ -9,7 +9,7 @@ const router = Router();
 router.post('/createCostumer', costumerController.addNewUser);
 router.put('/updateCostumer/:id', costumerController.updateUser);
 router.delete('/deleteCostumer/:id', costumerController.deleteUser);
-
+router.get('/allCostumers', costumerController.allUsers);
 /// Products
 router.post('/addProduct', StockController.addNewIten);
 router.get('/allProducts', StockController.allItens);
@@ -17,6 +17,7 @@ router.get('/allProducts', StockController.allItens);
 /// Orders
 router.post('/createOrder', OrderController.addNewProduct);
 router.delete('/deleteOrder/:id', OrderController.deleteOrder);
+router.get('/allOrders', OrderController.allOrders);
 
 // Rotas especiais
 router.get('/costumersByOrderId/:id', SpecialControllers.CostumerController);
