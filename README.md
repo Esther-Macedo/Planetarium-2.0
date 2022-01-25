@@ -1,7 +1,7 @@
 # Nucleo-back-end-Atividade-1
 
-Então  quer dizer você esperava que eu tivesse alguma criatividade pra dar nome as coisas? Risos
-ps: Obrigada, Laisa, obrigada, graças a você esse reademe presta.
+Então  quer dizer você esperava que eu tivesse alguma criatividade pra dar nome as coisas? Risos  
+
 
 # A api:
 
