@@ -19,11 +19,11 @@ Uma loja de planetas digna logicamente precisaria de uma rota para adicionar pla
 
 Como adicionar:
 {\
-    "name": "Super Gigante Azul",  *-Nome do produto*\
-    "class": "estrela",            *-ex: planeta, estrela, cometa, constelação.*\
-    "life":"N"                     *(S/N)indicar se o seu astro suporta vida.*\
-    "details":"Queimando he...",   *-Uma breve descrição do produto*\
-    "qtd": "3"                     *-Qunatidade disponivel.*\
+---    "name": "Super Gigante Azul",  ---*-Nome do produto*\
+---    "class": "estrela",            *-ex: planeta, estrela, cometa, constelação.*\
+---    "life":"N"                     ---*(S/N)indicar se o seu astro suporta vida.*\
+---    "details":"Queimando he...",   ---*-Uma breve descrição do produto*\
+---    "qtd": "3"                     ---*-Qunatidade disponivel.*\
 }
 
 O resultado pode ser encontrado na rota:
@@ -59,7 +59,7 @@ Não é necessário atualizar tudo de uma vez:
 {\
     "costumer_name": "patrick",\
     "username":"aEstrela"\
-}
+}  
 Também funcionaria por exemplo.
 
 Por fim:
