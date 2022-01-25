@@ -17,7 +17,7 @@ Uma loja de planetas digna logicamente precisaria de uma rota para adicionar pla
 
 **/addProducts**
 
-Como adicionar:
+Como adicionar:  
 {\
 ---    "name": "Super Gigante Azul",  ---*-Nome do produto*\
 ---    "class": "estrela",            *-ex: planeta, estrela, cometa, constelação.*\
@@ -36,11 +36,11 @@ GET **/allCostumers**
 
 POST **/createCostumer**
 
-{
-    "name": "Dandelion",
-    "username": "oBardo",
-    "email": "Dand10@bardos.com",
-    "pass":"geralt123"
+{\
+    "name": "Dandelion",\
+    "username": "oBardo",\
+    "email": "Dand10@bardos.com",\
+    "pass":"geralt123"\
 }
 
 Para atualizar:
