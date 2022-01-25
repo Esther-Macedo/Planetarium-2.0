@@ -18,12 +18,12 @@ Uma loja de planetas digna logicamente precisaria de uma rota para adicionar pla
 **/addProducts**
 
 Como adicionar:
-{
-    "name": "Super Gigante Azul",  *-Nome do produto*
-    "class": "estrela",            *-ex: planeta, estrela, cometa, constelação.*
-    "life":"N"                     *(S/N)para indicar se o seu astro suporta vida.*
-    "details":"Queimando he...",   *-Uma breve descrição do produto*
-    "qtd": "3"                     *-Qunatidade disponivel._*
+{\
+    "name": "Super Gigante Azul",  *-Nome do produto*\
+    "class": "estrela",            *-ex: planeta, estrela, cometa, constelação.*\
+    "life":"N"                     *(S/N)indicar se o seu astro suporta vida.*\
+    "details":"Queimando he...",   *-Uma breve descrição do produto*\
+    "qtd": "3"                     *-Qunatidade disponivel.*\
 }
 
 O resultado pode ser encontrado na rota:
@@ -47,18 +47,18 @@ Para atualizar:
 
 PUT **/updateUser/:iddousuarioaqui**
 
-{
-    "costumer_name":"....",
-    "username":"...",
-    "email"
-    "pass":"..."
+{\
+    "costumer_name":"....",\
+    "username":"...",\
+    "email"\
+    "pass":"..."\
 }
 
 Não é necessário atualizar tudo de uma vez:
 
-{
-    "costumer_name": "patrick",
-    "username":"aEstrela"
+{\
+    "costumer_name": "patrick",\
+    "username":"aEstrela"\
 }
 Também funcionaria por exemplo.
 
@@ -73,10 +73,10 @@ Você pode adicionar encomenda de planetas em:
 
 POST **/createOrder**
  
-{
-    "productId":"3",
-    "costumerId":"204",  
-    "qtd":"90.0000"
+{\
+    "productId":"3",\
+    "costumerId":"204",\  
+    "qtd":"90.0000"\
 }
 
 já para deletar um pedido:
@@ -87,7 +87,7 @@ DELETE **/deleteOrder/:id**
 
 Então quer dizer que você é um fofoqueiro e quer saber quem pediu o quê? Sem problemas:
 
-GET **/costumersByOrderId/:iddopedido** vai mostrar quem pediu aquela estrela da morte.
-GET **/allCostumersByOrderId** mostra todos os pedidos por id e quem pediu.
-GET **/productsBiOrderId/:id** mostra o item que foi pedido para quela order.
-GET **/allProductsByOrderId** mostra tudo o que foi pedido em cada order
+GET **/costumersByOrderId/:iddopedido** vai mostrar quem pediu aquela estrela da morte.\
+GET **/allCostumersByOrderId** mostra todos os pedidos por id e quem pediu.\
+GET **/productsBiOrderId/:id** mostra o item que foi pedido para quela order.\
+GET **/allProductsByOrderId** mostra tudo o que foi pedido em cada order.\
