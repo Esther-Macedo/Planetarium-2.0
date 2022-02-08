@@ -1,0 +1,10 @@
+{
+    "database": "planetas",
+    "type":"mysql",
+    "username":"root",
+    "password":"Delphini71",
+    "host":"localhost",
+    "syncronize": true,
+    "entities" :["entity/*.ts"],
+    "subscribers":["src/subscribers/*.ts"]
+}

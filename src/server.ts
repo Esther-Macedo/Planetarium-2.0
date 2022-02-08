@@ -1,3 +1,4 @@
+import './connection';
 import App from './app';
 
-App.listen(process.env.PORT || 3000);
+App.listen(3000);

@@ -1,26 +1,38 @@
-import connectToDatabase from '../Configs/db';
+import { getRepository } from 'typeorm';
+import Products from '../entity/Products';
 
+type celestialBody = {
+  productname:string;
+  type: string;
+  lifesupport:string;
+  details: string;
+  qtd:number;
+}
 class SotckQueries {
-  public static async createStock(
-    name: string,
-    pclass:string,
-    lifeSuport:string,
-    details:string,
-    qtd:number,
-  ) {
-    const connect = await connectToDatabase();
+  productRepo = getRepository(Products);
+
+  public async createStock({
+    productname, type, lifesupport, details, qtd,
+  }:celestialBody) {
     try {
-      connect.query('INSERT INTO products(product_name, class ,life_suport, details, qtd) VALUES(?,?,?,?,?)', [name, pclass, lifeSuport, details, qtd]);
+      const newAstro = this.productRepo.create({
+        productname, type, lifesupport, details, qtd,
+      });
+
+      await this.productRepo.save(newAstro);
     } catch (e) {
       throw new Error('Algo deu errado');
-    } finally { connect.end(); }
+    }
   }
 
-  public static async seeStock() {
-    const connect = await connectToDatabase();
-    try { return connect.query('SELECT * FROM products'); } catch (e) {
-      throw new Error('Algo deu errado');
-    } finally { connect.end(); }
+  public async seeStock() {
+    try {
+      const stock = await this.productRepo.find();
+      return stock;
+    } catch (e) {
+      console.log(e);
+      throw new Error('Ops, algo deu errado');
+    }
   }
 }
 

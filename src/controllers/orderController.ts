@@ -2,9 +2,11 @@ import { Request, Response } from 'express';
 import OrderQueries from '../services/orderQueries';
 
 class OrderController {
-  public static async addNewProduct(req: Request, res: Response) {
+  OrderService = new OrderQueries();
+
+  public async addNewProduct(req: Request, res: Response) {
     try {
-      await new OrderQueries().createOrder(
+      await this.OrderService.createOrder(
         req.body.productId,
         req.body.costumerId,
         req.body.qtd,
@@ -15,19 +17,19 @@ class OrderController {
     }
   }
 
-  public static async deleteOrder(req: Request, res: Response) {
+  public async deleteOrder(req: Request, res: Response) {
     try {
-      await new OrderQueries().deleteOrder(parseInt(req.params.id, 10));
+      await this.OrderService.deleteOrder(parseInt(req.params.id, 10));
       res.send('pedido deletado').status(200);
     } catch (e) {
       res.send('Algo deu errado').status(500);
     }
   }
 
-  public static async allOrders(req: Request, res: Response) {
+  public async allOrders(req: Request, res: Response) {
     try {
-      const result = await new OrderQueries().seeOrders();
-      res.send(result[0]).status(200);
+      const result = await this.OrderService.seeOrders();
+      res.send(result).status(200);
     } catch (e) {
       res.send('Algo deu errado').status(500);
     }

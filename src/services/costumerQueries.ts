@@ -1,59 +1,96 @@
-import connectToDatabase from '../Configs/db';
+import { getRepository } from 'typeorm';
 
+import User from '../entity/User';
+/* export async function itWillWork() {
+  const conn = (await createConnection({
+    database: 'teste',
+    host: 'localhost',
+    type: 'mysql',
+    port: 3306,
+    username: 'root',
+    password: 'Delphini71',
+    name: 'default',
+    synchronize: true,
+    entities: [
+      User, Orders, Products,
+    ],
+  }));
+  const vai = await conn.
+  getRepository(User).find();
+
+  return vai;
+} */
+
+type userData ={
+  name:string
+  userName:string
+  email:string
+  pass:string
+}
 class CostumerQueries {
-  connect = connectToDatabase();
-
-  async createUser(
-    name: string,
-    username:string,
-    email:string,
-    pass:string,
-  ) {
-    try {
-      (await this.connect).query('INSERT INTO costumers (costumer_name, username, email, pass) VALUES (?,?,?,?)', [name, username, email, pass]);
-    } finally {
-      (await this.connect).end();
-    }
-  }
-
-  async updateUser(toChange:string, id:number) {
-    try {
-      (await this.connect).query('UPDATE costumers SET ? WHERE costumer_id = ?', [toChange, id]);
-    } catch (e) {
-      throw new Error('Algo deu errado');
-    } finally {
-      (await this.connect).end();
-    }
-  }
-
-  async updatePassword(newPass:string, id:number) {
-    try {
-      (await this.connect).query('UPDATE costumers SET pass = ? WHERE costumer_id = ?', [newPass, id]);
-    } catch (e) {
-      throw new Error('Algo deu errado');
-    } finally {
-      (await this.connect).end();
-    }
-  }
-
-  async delelteUser(id:number) {
-    try {
-      (await this.connect).query('DELETE FROM costumers WHERE costumer_id = ?', [id]);
-    } catch (e) {
-      throw new Error('Algo deu Errado');
-    } finally {
-      (await this.connect).end();
-    }
-  }
+  public conn = getRepository(User);
 
   async seeUsers() {
     try {
-      return (await this.connect).query('SELECT * FROM costumers');
+      const data = await this.conn.find();
+      return data;
     } catch (e) {
-      throw new Error('Algo deu Errado');
-    } finally {
-      (await this.connect).end();
+      console.log(e);
+      throw new Error('Ops, algo deu errado');
     }
+  }
+
+  async getUsernameAndPass(name:string) {
+    try {
+      // selecionar o nome e a senha de um usuario de acordo com o userName
+      const data = await this.conn.findOne({ where: { userName: name }, select: ['userName', 'pass'] });
+      return data;
+    } catch (e) {
+      console.log(e);
+      throw new Error('Ops, algo deu errado');
+    }
+  }
+
+  async createUser({
+    name, userName, email, pass,
+  }: userData) {
+    const newUser = this.conn.create({
+      name,
+      userName,
+      email,
+      pass,
+    });
+    try {
+      await this.conn.save(newUser);
+    } catch (e) {
+      console.log(e);
+      throw new Error('Ops, Algo deu errado');
+    }
+  }
+
+  async deleteUser(id:number) {
+    const paredao = await this.conn.findOne(id);
+    if (!paredao) {
+      throw new Error('Ops, quem você está tentando eliminar não existe');
+    }
+    await this.conn.delete(id);
+  }
+
+  async updateUser({
+    name, userName, email, pass,
+  }: userData, costid:number) {
+    const person = await this.conn.findOne(costid);
+
+    if (!person) {
+      throw new Error('Ops, este usuário não existe');
+    }
+    // o eslint corrigiu essa parte.
+    person.name = name || person.name;
+    person.userName = userName || person.userName;
+    person.email = email || person.email;
+    person.pass = pass || person.pass;
+
+    await this.conn.save(person);
   }
 }
 

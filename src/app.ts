@@ -1,7 +1,11 @@
 import express, { Application } from 'express';
+
 import dotenv from 'dotenv';
+/* import './teste'; */
+
 import router from './routes/routes';
-import errorHandling from './Error/ErrorHandling';
+import errorHandling from './middleware/Error/ErrorHandling';
+import 'reflect-metadata';
 
 dotenv.config();
 
@@ -24,7 +28,7 @@ class App {
     this.app.use(errorHandling);
   }
 
-  private routes() {
+  private async routes() {
     this.app.use(router);
   }
 }

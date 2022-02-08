@@ -1,50 +1,66 @@
 import { Request, Response } from 'express';
+
 import bcrypt from 'bcrypt';
 import CostumerQueries from '../services/costumerQueries';
 
 class CostumerController {
-  public static async addNewUser(req: Request, res: Response) {
+  costumerQuery = new CostumerQueries();
+
+  public async addNewUser(req: Request, res: Response) {
+    const {
+      name, userName, email, sentPass,
+    } = req.body;
+    const pass = bcrypt.hashSync(sentPass, 10);
     try {
-      const hash = bcrypt.hashSync(req.body.pass, 10);
-      await new CostumerQueries().createUser(
-        req.body.name,
-        req.body.username,
-        req.body.email,
-        hash,
-      );
-      res.send('usuario criado').status(201);
+      await this.costumerQuery.createUser({
+        name, userName, email, pass,
+      });
+      res.send('Usuario criado').status(201);
     } catch (e) {
       res.send('algo deu errado').status(500);
     }
   }
-
-  public static async updateUser(req: Request, res:Response) {
+  /* public static async updateUser(req: Request, res:Response) {
     try {
-      await new CostumerQueries().updateUser(req.body, parseInt(req.params.id, 10));
-      if (req.body.pass) {
-        const hash = bcrypt.hashSync(req.body.pass, 10);
-        await new CostumerQueries().updatePassword(hash, parseInt(req.params.id, 10));
-      }
+
+      res.send('informações atualizadas').status(200);
+    } catch (e) {
+      res.send('algo deu errado').status(500);
+    } */
+
+  public async updateUser(req: Request, res:Response) {
+    const {
+      name, userName, email, newpass,
+    } = req.body;
+    const id = parseInt(req.params.id, 10);
+    try {
+      const pass = bcrypt.hashSync(newpass, 10);
+
+      await this.costumerQuery.updateUser({
+        name, userName, email, pass,
+      }, id);
       res.send('informações atualizadas').status(200);
     } catch (e) {
       res.send('algo deu errado').status(500);
     }
   }
 
-  public static async deleteUser(req: Request, res:Response) {
+  public async deleteUser(req: Request, res:Response) {
     try {
-      await new CostumerQueries().delelteUser(parseInt(req.params.id, 10));
+      const id = parseInt(req.params.id, 10);
+      await this.costumerQuery.deleteUser(id);
       res.send('Usuario deletado').status(200);
     } catch (e) {
       res.send('algo deu errado').status(500);
     }
   }
 
-  public static async allUsers(req: Request, res:Response) {
+  public async allUsers(req: Request, res:Response) {
     try {
-      const result = await new CostumerQueries().seeUsers();
-      res.send(result[0]);
+      const data = await this.costumerQuery.seeUsers();
+      res.json(data);
     } catch (e) {
+      console.log(e);
       res.send('algo deu errado').status(500);
     }
   }

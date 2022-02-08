@@ -1,7 +1,9 @@
-# Nucleo-back-end-Atividade-1
+# AVISO: ALTOS NIVEIS DE RADIAÇÃO
 
-Então  quer dizer você esperava que eu tivesse alguma criatividade pra dar nome as coisas? Risos  
-
+Você ja escutou algum concerto do Rachimaninoff e pensou "nossa, deve ser realmente muito incrivel tocar piano que nem ele".    
+Essa Api é aproxiamadamente como esse pensamento, um exercício de imaginação, e o que eu quero dizer com isso é: **ela não funciona**.    
+Ela não consgue se conectar com o banco de dados. Mas, depois de dias batendo a cabeça no teclado, eu resolvi continuar a construção dessa belezinha na esperança de resolver o problema posteriormente.  
+O problema é que, logicamente, foi impossivel testar as rotas então nada disso tem garantia de que vai funcionar (especialmente a parte do JWT) 
 
 # A api:
 

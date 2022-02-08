@@ -1,46 +1,48 @@
-import connectToDatabase from '../Configs/db';
+import { getRepository } from 'typeorm';
+import Orders from '../entity/Order';
 
 class SpecialQueries {
-  connect = connectToDatabase();
+  ordesrrepo = getRepository(Orders);
 
-  async getCostumerByOrderId(id:number) {
-    try {
-      return (await this.connect).query(`SELECT orders.order_id, costumers.costumer_id, costumers.costumer_name
-      from orders
-      join costumers
-      on orders.cost_id=costumers.costumer_id WHERE order_id = ${id}`);
-    } finally {
-      (await this.connect).end();
-    }
+  async getCostumerByOrderId(ordid:number) {
+    const thisCostumer = await this.ordesrrepo.find({
+      where: {
+        id: ordid,
+      },
+      relations: ['costumer'],
+    });
+    return thisCostumer;
   }
 
   async getAllCostumersByOrderId() {
     try {
-      return (await this.connect).query('SELECT orders.order_id, costumers.costumer_id, costumers.costumer_name, costumers.email from orders join costumers on orders.cost_id=costumers.costumer_id;');
+      const theseCostumers = await this.ordesrrepo.find({ relations: ['cosutmer'] });
+      return theseCostumers;
     } catch (e) {
       throw new Error('Algo deu errado');
-    } finally {
-      (await this.connect).end();
     }
   }
 
-  async getProductByOrderId(id: number) {
+  async getProductByOrderId(ordid: number) {
     try {
-      return (await this.connect).query(`SELECT orders.order_id, products.product_name, products.details FROM orders JOIN products ON orders.prod_id = products.product_id WHERE orders.order_id = ${id}`);
+      const thisproduct = await this.ordesrrepo.find({
+        where: {
+          id: ordid,
+        },
+        relations: ['product'],
+      });
+      return thisproduct;
     } catch (e) {
       throw new Error('Algo deu errado');
-    } finally {
-      (await this.connect).end();
     }
   }
 
   async getAllProductsByOrderId() {
     try {
-      return (await this.connect).query('SELECT orders.order_id, products.product_name, products.details FROM orders JOIN products ON orders.prod_id = products.product_id');
+      const theseproducts = await this.ordesrrepo.find({ relations: ['product'] });
+      return theseproducts;
     } catch (e) {
       throw new Error('Algo deu errado');
-    } finally {
-      (await this.connect).end();
     }
   }
 }
